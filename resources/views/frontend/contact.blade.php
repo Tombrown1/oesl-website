@@ -25,7 +25,7 @@
           <div class="info-item  d-flex flex-column justify-content-center align-items-center">
             <i class="bi bi-map"></i>
             <h3>Our Address</h3>
-            <p><Address><strong>Head Office:</strong> <br> {!! nl2br(e($settings->address))!!} <br><br>
+            <p><Address><strong>Corporate Office:</strong> <br> {!! nl2br(e($settings->address))!!} <br><br>
             <strong>USA Office:</strong><br> {!! nl2br(e($settings->address2))!!}
             </Address></p>
             {{-- <p><Address>USA Office: {!! nl2br(e($settings->address2)) !!}</Address></p> --}}

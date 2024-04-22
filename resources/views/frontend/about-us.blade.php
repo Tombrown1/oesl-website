@@ -43,7 +43,7 @@
   <!-- End About Section -->
 
    <!-- ======= Our Team Section ======= -->
-   <section id="team" class="team">
+   {{-- <section id="team" class="team">
     <div class="container" data-aos="fade-up">
 
       <div class="section-header">
@@ -158,6 +158,6 @@
       </div>
 
     </div>
-  </section><!-- End Our Team Section -->
+  </section><!-- End Our Team Section --> --}}
 
 @endsection
