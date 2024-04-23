@@ -2,6 +2,9 @@
 @section('pageTitle', 'Services')
 @section('content')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
 <div class="page-content">
 
     <nav class="page-breadcrumb float-end">
@@ -41,8 +44,10 @@
                 <div class="mb-3">
                   <label for="image" class="form-label">Image</label>
                   <input type="file" class="form-control" name="image" id="image">
-              </div>
-
+                </div>
+                <div class="mb-3">
+                  <img id="showimage" class="rounded-circle wd-100" src="{{(!empty($item->image)) ? url('uploads/services/'.$item->image) : url('backend/uploads/no-image.jpeg')}}" alt="">
+                </div>
                   <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                      <textarea name="editor1" id="editor1"  class="form-control" cols="10" rows="3"></textarea>
@@ -75,7 +80,6 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Image</th>
-                    <th>Slug</th>
                     <th>Action</th>		                       
                     </tr>
                 </thead>
@@ -87,10 +91,9 @@
                         <td>{{$item->name}} </td>
                         <td>{!! Str::limit($item->description, 50) !!}</td>
                         <td><img src="{{asset('uploads/services/'.$item->image)}}" alt=""></td>
-                        <td>{{$item->slug}}</td>
                           <td>                           
                             <a  type="button" class="btn btn-inverse-warning" data-bs-toggle="modal" data-bs-target="#serviceModal{{$item->id}}">Edit</a>
-                            <a href="{{route('delete.services', $item->id)}}" type="button" class="btn btn-inverse-danger" id="delete">Delete</a>
+                            {{-- <a href="{{route('delete.services', $item->id)}}" type="button" class="btn btn-inverse-danger" id="delete">Delete</a> --}}
                           </td>                    
                       </tr>
 
@@ -123,7 +126,12 @@
                         <div class="mb-3">
                           <label for="image" class="form-label">Image</label>
                           <input type="file" class="form-control" name="image" id="image">
-                      </div>
+                        </div>
+
+                        <div class="mb-3">
+                          <img id="showimage" class="rounded-circle wd-100" src="{{(!empty($item->image)) ? url('uploads/services/'.$item->image) : url('backend/uploads/no-image.jpeg')}}" alt="">
+                        </div>
+
 
                           <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
@@ -157,5 +165,18 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#image').change(function(e){
+          var reader = new FileReader();
+          reader.onload = function(e){
+              $('#showimage').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(e.target.files['0']);
+      });
+  });
+
+</script>
 
 @endsection

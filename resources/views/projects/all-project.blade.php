@@ -1,7 +1,11 @@
 @extends('admin.admin-dashboard')
 @section('pageTitle', 'All Project Category')
 @section('content')
-<div class="page-content">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
+<div class="page-content">  
 
     <nav class="page-breadcrumb float-end">
         <ol class="breadcrumb">
@@ -41,7 +45,9 @@
                   <label for="image" class="form-label">Image</label>
                   <input type="file" class="form-control" name="image" id="image">
               </div>
-
+              <div class="mb-3">
+                <img id="showimage" class="rounded-circle wd-100" src="{{(!empty($item->image)) ? url('uploads/projects/'.$item->image) : url('backend/uploads/no-image.jpeg')}}" alt="">
+              </div>
                   <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                      <textarea name="editor1" id="editor1"  class="form-control" cols="10" rows="3"></textarea>
@@ -87,7 +93,7 @@
                         <td><img src="{{asset('uploads/projects/'.$item->image)}}" alt=""></td>
                           <td>
                             <a  type="button" class="btn btn-inverse-warning" data-bs-toggle="modal" data-bs-target="#projectModal{{$item->id}}">Edit</a>
-                            <a href="{{route('delete.project', $item->id)}}" type="button" class="btn btn-inverse-danger" id="delete">Delete</a>
+                            {{-- <a href="{{route('delete.project', $item->id)}}" type="button" class="btn btn-inverse-danger" id="delete">Delete</a> --}}
                           </td>                    
                       </tr>
 
@@ -122,6 +128,9 @@
                             <input type="file" class="form-control" name="image" id="image">
                         </div>
 
+                        <div class="mb-3">
+                          <img id="showimage" class="rounded-circle wd-100" src="{{(!empty($item->image)) ? url('uploads/projects/'.$item->image) : url('backend/uploads/no-image.jpeg')}}" alt="">
+                        </div>
                             <div class="mb-3">
                               <label for="description" class="form-label">Description</label>
                               <textarea name="description" id="editor1{{$item->id}}"  class="form-control" cols="10" rows="3">{{$item->description}}</textarea>
@@ -150,6 +159,19 @@
         </div>
         </div>
     </div>
-
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#image').change(function(e){
+          var reader = new FileReader();
+          reader.onload = function(e){
+              $('#showimage').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(e.target.files['0']);
+      });
+  });
+
+</script>
+
 @endsection

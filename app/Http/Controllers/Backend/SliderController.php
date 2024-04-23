@@ -50,7 +50,7 @@ class SliderController extends Controller
         
         if($request->file('image')){
             $file = $request->file('image');
-            @unlink(public_path('uploads/images/'.$updateSlider->photo));
+            @unlink(public_path('uploads/Slider/'.$updateSlider->photo));
             $filename = $file->getClientOriginalName();
             $file->move(public_path('uploads/Slider'), $filename);
             $updateSlider['image'] = $filename;

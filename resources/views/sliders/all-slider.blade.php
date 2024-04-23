@@ -2,6 +2,8 @@
 @section('pageTitle', 'Sliders')
 @section('content')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 <div class="page-content"> 
     
     <nav class="page-breadcrumb float-end">
@@ -35,6 +37,9 @@
                   <div class="mb-3">
                     <label for="image" class="form-label">Image</label>
                     <input type="file" class="form-control" name="image" id="image">
+                </div>
+                <div class="mb-3">
+                  <img id="showimage" class="rounded-circle wd-100" src="{{(!empty($item->image)) ? url('uploads/Slider/'.$item->image) : url('backend/uploads/no-image.jpeg')}}" alt="">
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -90,13 +95,16 @@
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" name="title" value="{{$item->title}}" autocomplete="off" placeholder="Title">
                   </div>
-                  <div class="mb-3">
+                  {{-- <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea name="description" class="form-control" cols="10" rows="3">{{$item->description}}</textarea>
-                  </div>
+                  </div> --}}
                   <div class="mb-3">
                     <label for="image" class="form-label">Image</label>
                     <input type="file" class="form-control" name="image" id="image">
+                </div>
+                <div class="mb-3">
+                  <img id="showimage" class="rounded-circle wd-100" src="{{(!empty($item->image)) ? url('uploads/Slider/'.$item->image) : url('backend/uploads/no-image.jpeg')}}" alt="">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
